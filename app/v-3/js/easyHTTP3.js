@@ -2,7 +2,7 @@
 * Easy HTTP
 * Library for making http requests
 *
-* @version 2.0.0
+* @version 3.0.0
 * @author Brad Traversy
 * @license MIT
 *
@@ -10,62 +10,54 @@
 
 class easyHTTP {
 	// GET METHOD
-	get(url) {
+	async get(url) {
 
-		return new Promise((resolve, reject) => {
-			fetch(url)
-				.then(res => res.json())
-				.then(data => resolve(data))
-				.catch(err => reject(err));
-		})
+		const response = await fetch(url);
+		const resData = await response.json();
+		return resData;
 	}
 	// POST METHOD
-	post(url, data) {
+	async post(url, data) {
 
-		return new Promise((resolve, reject) => {
-			fetch(url, {
+		
+		const response = await	fetch(url, {
 				method: "POST",
 				headers: {
 					"Content-type": "application/json"
 				},
 				body: JSON.stringify(data)
 				
-			})
-				.then(res => res.json())
-				.then(data => resolve(data))
-				.catch(err => reject(err));
-		})
+			});
+
+		const resData = await response.json();
+		return resData;
+				
 	}
 	// PUT METHOD
-	put(url, data) {
+	async put(url, data) {
 
-		return new Promise((resolve, reject) => {
-			fetch(url, {
+		const response = await	fetch(url, {
 				method: "PUT",
 				headers: {
 					"Content-type": "application/json"
 				},
 				body: JSON.stringify(data)
+			});
+
+		const resData = await response.json();
+		return resData;
 				
-			})
-				.then(res => res.json())
-				.then(data => resolve(data))
-				.catch(err => reject(err));
-		})
 	}
 	// DELETE METHOD
-	delete(url) {
-
-		return new Promise((resolve, reject) => {
-			fetch(url, {
+	async delete(url) {
+	const response = await	fetch(url, {
 				method: "DELETE",
 				headers: {
 					"Content-type": "application/json"
 				}
-			})
-				.then(res => res.json())
-				.then(() => resolve("User deleted..."))
-				.catch(err => reject(err));
 		})
+
+		const resData = await "RESOURSE DELETED";
+		return resData;
 	}
 }
